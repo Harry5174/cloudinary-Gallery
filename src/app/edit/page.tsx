@@ -1,4 +1,3 @@
-// @ts-nocheck
 "use client";
 import { CldImage } from "next-cloudinary";
 import UploadButton from "../gallery/upload-button";
@@ -6,6 +5,20 @@ import { Button } from "@/components/ui/button";
 import { useState } from "react";
 import { Input } from "@/components/ui/input";
 import { Label } from "@radix-ui/react-dropdown-menu";
+
+type CldImageProps = {
+  src: string;
+  width: string;
+  height: string;
+  alt: string;
+  crop?: string;
+  fillBackground?: {
+    prompt: string;
+  };
+  blur?: string;
+  grayscale?: boolean;
+  pixelate?: boolean;
+};
 
 export default function EditPage({
   searchParams: { publicId },
@@ -42,8 +55,8 @@ export default function EditPage({
               <Button
                 className="bg-black text-white rounded-xl"
                 onClick={() => {
-                  setTransformation("generative-fill")
-                  setPrompt(pendingPrompt)
+                  setTransformation("generative-fill");
+                  setPrompt(pendingPrompt);
                 }}
               >
                 Apply Generative Fill
@@ -97,23 +110,23 @@ export default function EditPage({
               />
             )}
 
-            {transformation === "blur" && (
-              
-              <CldImage
-                src={publicId}
-                width="1200"
-                height="1400"
-                blur="800"
-                alt="an image of someting"
-              />
-            )}
+            {transformation === "blur" &&
+              ((
+                <CldImage
+                  src={publicId}
+                  width="1200"
+                  height="1400"
+                  //blur="800"
+                  alt="an image of someting"
+                />
+              ) as any)}
 
             {transformation === "grayscale" && (
               <CldImage
                 src={publicId}
                 width="1200"
                 height="1400"
-                grayscale
+               // grayscale
                 alt="an image of someting"
               />
             )}
@@ -123,7 +136,7 @@ export default function EditPage({
                 src={publicId}
                 width="1200"
                 height="1400"
-                pixelate
+              //  pixelate
                 alt="an image of someting"
               />
             )}
