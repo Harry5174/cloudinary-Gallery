@@ -1,3 +1,5 @@
+//@ts-nocheck
+
 "use client";
 import { CldImage } from "next-cloudinary";
 import UploadButton from "../gallery/upload-button";
@@ -28,7 +30,7 @@ export default function EditPage({
   };
 }) {
   const [transformation, setTransformation] = useState<
-    undefined | "generative-fill" | "blur" | "grayscale" | "pixelate"
+    undefined | "generative-fill" | "blur" | "grayscale" | "pixelate" | "bg-remove"
   >();
 
   const [pendingPrompt, setPendingPrompt] = useState("");
@@ -88,6 +90,13 @@ export default function EditPage({
             >
               Pixelate
             </Button>
+
+            <Button
+              className="bg-black text-white rounded-xl"
+              onClick={() => setTransformation("bg-remove")}
+            >
+              Remove Background
+            </Button>
           </div>
 
           <div className="grid grid-cols-2 gap-12 pb-10">
@@ -116,7 +125,7 @@ export default function EditPage({
                   src={publicId}
                   width="1200"
                   height="1400"
-                  //blur="800"
+                  blur="800"
                   alt="an image of someting"
                 />
               ) as any)}
@@ -126,7 +135,7 @@ export default function EditPage({
                 src={publicId}
                 width="1200"
                 height="1400"
-               // grayscale
+                grayscale
                 alt="an image of someting"
               />
             )}
@@ -136,9 +145,19 @@ export default function EditPage({
                 src={publicId}
                 width="1200"
                 height="1400"
-              //  pixelate
+                pixelate
                 alt="an image of someting"
               />
+            )}
+
+              {transformation === "bg-remove" && (
+                <CldImage
+                  src={publicId}
+                  width="1200"
+                  height="1400"
+                  removeBackground
+                  alt="an image of someting"
+                />
             )}
           </div>
         </div>

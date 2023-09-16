@@ -12,7 +12,7 @@ export default function AlbumGrid({ images }: { images: SearchResult[] }) {
         getImage={(imageData: SearchResult) => {
           return (
             <CloudinaryImage
-              key={imageData.publicId}
+              key={imageData.public_id}
               imageData={imageData}
               width="400"
               height="300"
