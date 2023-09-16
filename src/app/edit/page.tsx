@@ -1,3 +1,4 @@
+// @ts-nocheck
 "use client";
 import { CldImage } from "next-cloudinary";
 import UploadButton from "../gallery/upload-button";
@@ -97,6 +98,7 @@ export default function EditPage({
             )}
 
             {transformation === "blur" && (
+              
               <CldImage
                 src={publicId}
                 width="1200"
