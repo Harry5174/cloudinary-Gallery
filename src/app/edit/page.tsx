@@ -8,20 +8,6 @@ import { useState } from "react";
 import { Input } from "@/components/ui/input";
 import { Label } from "@radix-ui/react-dropdown-menu";
 
-type CldImageProps = {
-  src: string;
-  width: string;
-  height: string;
-  alt: string;
-  crop?: string;
-  fillBackground?: {
-    prompt: string;
-  };
-  blur?: string;
-  grayscale?: boolean;
-  pixelate?: boolean;
-};
-
 export default function EditPage({
   searchParams: { publicId },
 }: {
